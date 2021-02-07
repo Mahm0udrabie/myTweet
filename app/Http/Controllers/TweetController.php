@@ -14,10 +14,15 @@ class TweetController extends Controller
         ]);
     }
     public function store() {
-        $attributes = request() -> validate(['body' => "required|max:255"]);
+        // dd(request()->all());
+        $attributes = request() -> validate([
+            'body'  => "required|max:255",
+            'media' => 'file'
+        ]);
             Tweet::create([
                 'user_id' => auth() -> user()-> id,
-                'body'    => $attributes['body']
+                'body'    => $attributes['body'],
+                'media'   => request('media')->store('media'),
             ]);
         return redirect("/tweets");
     }
