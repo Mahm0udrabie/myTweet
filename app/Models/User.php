@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use App\Followable;
 use App\Models\Tweet;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Comment;
+use App\Models\Message;
 
 
 class User extends Authenticatable
@@ -60,11 +61,13 @@ class User extends Authenticatable
     // }
     public function timeline() {
         // return Tweet::where('user_id', $this->id)->latest()->get();
-        // include all of the users's tweets 
+        // include all of the user's tweets 
         // as well as the tweets of everyone 
         // they follow.. in descending order by date.
         $friends = $this->follows()->pluck('id');
-        return Tweet::whereIn('user_id', $friends)
+        return Tweet::with(['comments' => function($q) {
+            $q->select('id', 'tweet_id', 'user_id','comment');
+        }])->whereIn('user_id', $friends)
             ->orWhere('user_id', $this->id)
             ->withLikes()
             ->orderByDesc('id')
@@ -80,5 +83,13 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'user_id');   
+    }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }

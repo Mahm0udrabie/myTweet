@@ -6,6 +6,7 @@ use App\Likable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\like;
+use App\Models\Comment;
 
 class Tweet extends Model
 {
@@ -17,5 +18,9 @@ class Tweet extends Model
     }
     public function getMediaAttribute($value) {
         return asset($value ? "storage/".$value : '');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'tweet_id');   
     }
 }

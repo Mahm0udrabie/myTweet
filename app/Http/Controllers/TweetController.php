@@ -19,10 +19,11 @@ class TweetController extends Controller
             'body'  => "required|max:255",
             'media' => 'file'
         ]);
+        
             Tweet::create([
                 'user_id' => auth() -> user()-> id,
                 'body'    => $attributes['body'],
-                'media'   => request('media')->store('media'),
+                'media'   => request('media') ? request('media')->store('media') : NULL,
             ]);
         return redirect("/tweets");
     }

@@ -1,4 +1,5 @@
 <div class="flex p-4 {{ $loop->last ? '': 'border-b border-b gray-400' }} ">
+    
     <div class="mr-2 flex-shrink-0">
         <a href="{{ $tweet->user->path() }}">
             <img 
@@ -28,5 +29,11 @@
         @auth
             <x-like-buttons :tweet="$tweet" />
         @endauth
+        <div>
+            @include('publish-tweet-comment', ['tweet'=>$tweet])
+            @error('comment')
+            <p class="text-red-500 text-sm mt-2"> {{ $message }} </p>
+        @enderror
+        </div>
     </div>   
 </div>

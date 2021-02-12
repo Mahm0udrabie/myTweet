@@ -20,7 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/realtime', function () {
+    return view('realtime');
+});
+
+Route::get('/redirect/{service}', "App\Http\Controllers\SocialController@redirect");
+Route::get('/callback/{service}', "App\Http\Controllers\SocialController@callback");
+
 Route::middleware("auth")->group(function() {
+    Route::get('/test', function() {
+        return "true";
+    });
     Route::post('/tweets', "App\Http\Controllers\TweetController@store")->name("tweets.store");
     Route::get('/tweets', "App\Http\Controllers\TweetController@index")->name("home");
     Route::post('/tweets/{tweet}/like', 'App\Http\Controllers\TweetLikesController@store');
@@ -30,9 +41,14 @@ Route::middleware("auth")->group(function() {
     Route::get('/profiles/{user:username}', 'App\Http\Controllers\ProfilesController@show')->name('profile');
     Route::patch('/profiles/{user:username}', 'App\Http\Controllers\ProfilesController@update')->middleware('can:edit,user');   
     Route::get('/explore', "App\Http\Controllers\ExploreController"); 
+    Route::post('/comment', "App\Http\Controllers\CommentController@store" )->name('comment.store');
+
+    ################ messages ##################
+    Route::get('/chat', 'App\Http\Controllers\ChatsController@index')->name("chatting");
+    Route::get('messages', 'App\Http\Controllers\ChatsController@fetchMessages');
+    Route::post('messages', 'App\Http\Controllers\ChatsController@sendMessage');
+    ############ end ##########
 });
-
-
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

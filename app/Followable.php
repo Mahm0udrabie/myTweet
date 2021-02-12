@@ -27,6 +27,7 @@ trait Followable
             ->exists();
     }
 
+
     public function follows(){
         return $this->belongsToMany(
             User::class,

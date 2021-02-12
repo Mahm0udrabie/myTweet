@@ -8,7 +8,8 @@
 
             <img src="{{ $user->avatar }}"
                  {{-- alt="{{ $user->avatar }}" --}}
-                 class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
+                 class="rounded-full overflow-hidden 
+                 mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
                  style="left: 50%;"
                  width="150"
                  height="150"
