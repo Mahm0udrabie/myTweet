@@ -69,7 +69,7 @@ class User extends Authenticatable
             $q->select('id', 'tweet_id', 'user_id','comment');
         }])->whereIn('user_id', $friends)
             ->orWhere('user_id', $this->id)
-            // ->withLikes()
+            ->withLikes()
             ->orderByDesc('id')
             ->paginate(10);
     }
