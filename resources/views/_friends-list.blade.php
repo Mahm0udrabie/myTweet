@@ -18,7 +18,7 @@
                 </div>
             </li>
             @empty
-                <li>No followers yet.</li>
+                <li>There's No followers yet.</li>
         @endforelse
     </ul>
 </div>
