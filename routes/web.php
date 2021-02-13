@@ -20,6 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("/terms", function() {
+    echo "<h1>terms</h1>";
+});
+
+Route::get("/privacy", function() {
+    echo "<h1>privacy</h1>";
+});
 
 Route::get('/realtime', function () {
     return view('realtime');
