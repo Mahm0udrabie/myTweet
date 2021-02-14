@@ -16,9 +16,9 @@ class SocialController extends Controller
 
     public function callback($service) {
        $facebookDate = Socialite::with($service) -> user();
-       return response() -> json($facebookDate);
+    //    return response() -> json($facebookDate);
        try{
-        $user = User::where('email', $facebookDate->email)->firstOrFail();
+        return $user = User::where('email', $facebookDate->email)->firstOrFail();
     } catch (ModelNotFoundException $e) {
         $user = new User();
         $user->create([
