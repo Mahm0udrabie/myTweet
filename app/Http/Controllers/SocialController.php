@@ -32,9 +32,7 @@ class SocialController extends Controller
         ]);
         // dd($create);
     }
-
         Auth::login($user);
         return redirect("/tweets");
-
     }
 }
