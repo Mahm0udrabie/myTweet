@@ -27,7 +27,7 @@
                   class="mb-2"
             >
         @auth
-            <x-like-buttons :tweet="$tweet" />
+            {{-- <x-like-buttons :tweet="$tweet" /> --}}
         @endauth
         <div>
             @include('publish-tweet-comment', ['tweet'=>$tweet])
