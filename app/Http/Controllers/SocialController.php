@@ -32,7 +32,7 @@ class SocialController extends Controller
     }
         Auth::login($user);
 
-        return view("tweets.index");
+        return redirect("/tweets");
 
     }
 }
