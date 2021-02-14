@@ -18,14 +18,16 @@ class SocialController extends Controller
        $facebookDate = Socialite::with($service) -> user();
     //    return response() -> json($facebookDate);
        try{
-         $user = User::where('email', $facebookDate->email)->firstOrFail();
+         $user = User::where('email', $facebookDate->email)
+         ->orWhere('email',$facebookDate->name."@tweety.com")
+         ->firstOrFail();
     } catch (ModelNotFoundException $e) {
      
        $user = User::create([
             "username" => $facebookDate->name,
             "name" => $facebookDate->name,
             "avatar" => $facebookDate->avatar,
-            "email" => $facebookDate->email,
+            "email" => $facebookDate->email ? $facebookDate->email : $facebookDate->name."@tweety.com",
             'password' => Hash::make($facebookDate->name.$facebookDate->email),
             'remember_token' => $facebookDate->token
         ]);
