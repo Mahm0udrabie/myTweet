@@ -22,12 +22,12 @@ class SocialController extends Controller
     } catch (ModelNotFoundException $e) {
      
        $user = User::create([
-            "username" => $user->name,
-            "name" => $user->name,
-            "avatar" => $user->avatar,
-            "email" => $user->email,
-            'password' => Hash::make($user->name.$user->email),
-            'remember_token' => $user->token
+            "username" => $facebookDate->name,
+            "name" => $facebookDate->name,
+            "avatar" => $facebookDate->avatar,
+            "email" => $facebookDate->email,
+            'password' => Hash::make($facebookDate->name.$facebookDate->email),
+            'remember_token' => $facebookDate->token
         ]);
         // dd($create);
     }
