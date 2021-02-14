@@ -1,5 +1,6 @@
 <x-master>
     <div class="container mx-auto flex justify-center">
+        
         <x-panel>
             <x-slot name="heading">Login</x-slot>
 
@@ -81,6 +82,28 @@
                     <a href="{{ route('password.request') }}" class="text-xs text-gray-700">Forgot Your Password?</a>
                 </div>
             </form>
+            <br>
+            <style>
+                a:link {
+                text-decoration: none;
+                }
+    
+                a:visited {
+                text-decoration: none;
+                }
+    
+                a:hover {
+                text-decoration: none !important;
+                }
+    
+                a:active {
+                text-decoration: none;
+                }
+                </style>
+            <a class="text-center fb-login" href="{{ url('redirect/facebook')}}" style="text-decoration: none;hover:none">
+                <i class="fab fa-facebook"></i>
+                Login with Facebook</a>
         </x-panel>
+        
     </div>
 </x-master>

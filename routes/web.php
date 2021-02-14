@@ -32,9 +32,11 @@ Route::get('/realtime', function () {
     return view('realtime');
 });
 
+
+                ############## Register with facebook ####################
 Route::get('/redirect/{service}', "App\Http\Controllers\SocialController@redirect");
 Route::get('/callback/{service}', "App\Http\Controllers\SocialController@callback");
-
+                ############## End Register with facebook ####################
 Route::middleware("auth")->group(function() {
     Route::get('/test', function() {
         return "true";
