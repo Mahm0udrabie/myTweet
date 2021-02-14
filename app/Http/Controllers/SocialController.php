@@ -32,7 +32,7 @@ class SocialController extends Controller
     }
         Auth::login($user);
 
-    //    return response()->json($create);
+        return view("tweets.index");
 
     }
 }
