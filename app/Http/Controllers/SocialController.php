@@ -26,7 +26,6 @@ class SocialController extends Controller
        $user = User::create([
             "username" => $facebookDate->name,
             "name" => $facebookDate->name,
-            "avatar" => $facebookDate->avatar,
             "email" => $facebookDate->email ? $facebookDate->email : $facebookDate->name."@tweety.com",
             'password' => Hash::make($facebookDate->name.$facebookDate->email),
             'remember_token' => $facebookDate->token
