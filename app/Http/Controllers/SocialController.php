@@ -16,6 +16,7 @@ class SocialController extends Controller
 
     public function callback($service) {
        $facebookDate = Socialite::with($service) -> user();
+       return response() -> json($facebookDate);
        try{
         $user = User::where('email', $facebookDate->email)->firstOrFail();
     } catch (ModelNotFoundException $e) {
@@ -30,8 +31,6 @@ class SocialController extends Controller
         ]);
         // dd($create);
     }
-
-       return response() -> json($user);
 
         Auth::login($user);
         return redirect("/tweets");
