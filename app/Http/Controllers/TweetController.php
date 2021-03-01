@@ -10,7 +10,7 @@ class TweetController extends Controller
     {
         // $tweets = Tweet::latest()->get();
         return view('tweets.index', [
-            'tweets' => auth()->user()->timeline()
+            'tweets' => auth() ->user() ->timeline()
         ]);
     }
     public function store() {
@@ -20,11 +20,11 @@ class TweetController extends Controller
             'media' => 'file'
         ]);
         
-            Tweet::create([
+        Tweet::create([
                 'user_id' => auth() -> user()-> id,
                 'body'    => $attributes['body'],
                 'media'   => request('media') ? request('media')->store('media') : NULL,
-            ]);
+        ]);
         return redirect("/tweets");
     }
 }

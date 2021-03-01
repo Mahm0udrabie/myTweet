@@ -115,6 +115,8 @@
                         Register
                     </button>
                     <a href="{{ url('redirect/facebook')}}">Register with Facebook</a>
+                    <a href="{{ url('redirect/github')}}">Register with Github</a>
+
                 </div>
             </form>
         </x-panel>

@@ -31,7 +31,6 @@
         </div>
 @endif
 @forelse($tweet->comments as $comment)
-    <p>{{ $tweet->name }}AAAa</p>
         <p class=placeholder-green-900" style="background-color: rgba(79, 124, 122, 0.37)">
             {{ $comment->comment }}</p>
         <br>

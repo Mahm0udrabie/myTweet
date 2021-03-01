@@ -1,6 +1,16 @@
 @auth
+<li class="flex">
+    <i class="fas fa-bell mt-1" style="font-size: 20px"></i>
+    <a href="#" class="font-bold text-lg mb-3 block ">
+        <span class="m-2">Notifications</span>
+    </a>
+</li>
 
-    <li class="dropdown dropdown-notification nav-item  dropdown-notifications flex">
+
+
+
+
+    {{-- <li class="dropdown dropdown-notification nav-item  dropdown-notifications flex">
         <i class="fas fa-bell" style="font-size: 20px"></i>
         <a class="font-bold nav-link nav-link-label" style="position: relative; bottom:10px; left:-5px" href="#" data-toggle="dropdown">
                Notifications
@@ -29,6 +39,6 @@
             <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href=""> All Notifications </a>
             </li>
         </ul>
-    </li>
+    </li> --}}
 
 @endauth

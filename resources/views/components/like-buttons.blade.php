@@ -1,7 +1,6 @@
 <div class="flex">
-    <form method="POST"
-          action="/tweets/{{ $tweet->id }}/like"
-    >
+    <form method="POST" action="/tweets/{{ $tweet->id }}/like"
+>
         @csrf
 
         <div 
