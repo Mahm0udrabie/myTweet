@@ -16,11 +16,11 @@ class SocialController extends Controller
 
     public function callback($service) {
         $facebookDate = Socialite::with($service)->user();
-        dd($facebookDate->user);
+        // dd($facebookDate);
     //    return response() -> json($facebookDate);
        try{
          $user = User::where('email', $facebookDate->email)
-         ->orWhere('email',$facebookDate->user['login']."@tweety.com")
+         ->orWhere('email',$facebookDate->name."@tweety.com")
          ->firstOrFail();
     } catch (ModelNotFoundException $e) {
      
