@@ -40,7 +40,7 @@ class SocialController extends Controller
         return Socialite::driver('github')->redirect();
     }
     public function handleProviderCallbackGitHub() {
-        $facebookDate = Socialite::with('github') -> user();
-        dd($facebookDate->user);
+        $data = Socialite::with('github') -> user();
+        dd([$data, $data->user]);
     }
 }
