@@ -103,7 +103,7 @@
             <a class="text-center fb-login" href="{{ url('redirect/facebook')}}" style="text-decoration: none;hover:none">
                 <i class="fab fa-facebook"></i>
                 Login with Facebook</a>
-                <a class="text-center fb-login" href="{{ url('redirect/github')}}" style="text-decoration: none;hover:none">
+                <a class="text-center fb-login" href="{{ url('login/github')}}" style="text-decoration: none;hover:none">
                     <i class="fab fa-github"></i>
                     Login with Github</a>
         </x-panel>

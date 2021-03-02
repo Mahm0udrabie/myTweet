@@ -16,11 +16,11 @@ class SocialController extends Controller
 
     public function callback($service) {
         $facebookDate = Socialite::with($service) -> user();
-        dd($facebookDate);
+        dd($facebookDate->user);
     //    return response() -> json($facebookDate);
        try{
          $user = User::where('email', $facebookDate->email)
-         ->orWhere('email',$facebookDate->name."@tweety.com")
+         ->orWhere('email',$facebookDate->user['login']."@tweety.com")
          ->firstOrFail();
     } catch (ModelNotFoundException $e) {
      
@@ -35,5 +35,12 @@ class SocialController extends Controller
     }
         Auth::login($user);
         return redirect("/tweets");
+    }
+    public function redirectToGitHub() {
+        return Socialite::driver('github')->redirect();
+    }
+    public function handleProviderCallbackGitHub() {
+        $facebookDate = Socialite::with('github') -> user();
+        dd($facebookDate->user);
     }
 }
