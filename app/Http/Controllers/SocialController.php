@@ -13,14 +13,12 @@ class SocialController extends Controller
     public function redirect($service) {
         return Socialite::driver($service)->redirect(); 
     }
-
     public function callback($service) {
         $facebookDate = Socialite::with($service) -> user();
-        dd($facebookDate->user);
     //    return response() -> json($facebookDate);
-       try{
+    try{
          $user = User::where('email', $facebookDate->email)
-         ->orWhere('email',$facebookDate->user['login']."@tweety.com")
+         ->orWhere('email',$facebookDate->name."@tweety.com")
          ->firstOrFail();
     } catch (ModelNotFoundException $e) {
      
@@ -41,6 +39,28 @@ class SocialController extends Controller
     }
     public function handleProviderCallbackGitHub() {
         $data = Socialite::with('github') -> user();
-        dd([$data, $data->user]);
+        // dd([$data, $data->user]);
+        try{
+        $user = User::where('social_id', $data->id)
+            ->orWhere('email', $data->email)
+            ->orWhere('email',$data->nickname."@tweety.com")
+            ->firstOrFail();
+       } catch (ModelNotFoundException $e) {
+        // dd($data);
+          $user = User::create([
+              'social_id' => $data->id,
+               "username" => $data->nickname,
+               "name" => $data->nickname,
+               "avatar" => $data->avatar,
+               "email" => $data->email ? $data->email : $data->nickname."@tweety.com",
+               'password' => Hash::make($data->nickname.$data->email),
+               'socialToken' => $data->token,
+               'remember_token' => $data->token
+           ]);
+           // dd($create);
+       }
+    //    dd($user);
+           Auth::login($user);
+           return redirect("/tweets");
     }
 }
