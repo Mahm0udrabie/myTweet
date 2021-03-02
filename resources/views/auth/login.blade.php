@@ -101,11 +101,11 @@
                 }
                 </style>
             <a class="text-center fb-login" href="{{ url('redirect/facebook')}}" style="text-decoration: none;hover:none">
-                <i class="fab fa-facebook"></i>
-                Login with Facebook</a>
-                <a class="text-center fb-login" href="{{ url('login/github')}}" style="text-decoration: none;hover:none">
-                    <i class="fab fa-github"></i>
-                    Login with Github</a>
+                <i class="fab fa-facebook fa-3x" title="Login with Facebook"></i>
+                </a>
+                <a class="text-center fb-login" href="{{ url('redirect/github')}}" style="text-decoration: none;hover:none">
+                    <i class="fab fa-github fa-3x" title="Login with Github"></i>
+                </a>
         </x-panel>
         
     </div>

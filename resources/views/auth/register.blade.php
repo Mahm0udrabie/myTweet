@@ -1,9 +1,20 @@
 <x-master>
     <div class="container mx-auto flex justify-center">
-        <x-panel>
-            <x-slot name="heading">Register</x-slot>
+     
+<x-panel>
+
+            <x-slot name="heading">
+                    <a href="{{ url('redirect/facebook')}}">
+                        <i class="fab fa-facebook fa-3x" title="Login with Facebook"></i>
+                    </a>
+                    <a href="{{ url('redirect/github')}}">
+                        <i class="fab fa-github fa-3x" title="Login with GitHub"></i>
+                    </a>
+            </x-slot>
 
             <form method="POST" action="{{ route('register') }}">
+                
+                
                 @csrf
 
                 <div class="mb-6">
@@ -114,9 +125,7 @@
                     >
                         Register
                     </button>
-                    <a href="{{ url('redirect/facebook')}}">Register with Facebook</a>
-                    <a href="{{ url('login/github')}}">Register with Github</a>
-
+                    <br>
                 </div>
             </form>
         </x-panel>
