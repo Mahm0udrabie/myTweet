@@ -37,13 +37,6 @@ Route::get('/realtime', function () {
 Route::get('/redirect/{service}', "App\Http\Controllers\SocialController@redirect");
 Route::get('/callback/{service}', "App\Http\Controllers\SocialController@callback");
                 ############## End Register with facebook ####################
-                
-############################### Register with github ###################
-Route::get('login/github', 'App\Http\Controllers\SocialController@redirectToGitHub');
-Route::get('login/github/callback', 'App\Http\Controllers\SocialController@handleProviderCallbackGitHub');
-########################### End Register with github ####################
-
-
 Route::middleware("auth")->group(function() {
     Route::get('/test', function() {
         return "true";

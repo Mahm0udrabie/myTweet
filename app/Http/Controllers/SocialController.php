@@ -15,8 +15,7 @@ class SocialController extends Controller
     }
 
     public function callback($service) {
-        $facebookDate = Socialite::with($service)->user();
-        // dd($facebookDate);
+       $facebookDate = Socialite::with($service) -> user();
     //    return response() -> json($facebookDate);
        try{
          $user = User::where('email', $facebookDate->email)
@@ -35,12 +34,5 @@ class SocialController extends Controller
     }
         Auth::login($user);
         return redirect("/tweets");
-    }
-    public function redirectToGitHub() {
-        return Socialite::driver('github')->redirect();
-    }
-    public function handleProviderCallbackGitHub() {
-        $data = Socialite::with('github')->user();
-        dd([$data, $data->user]);
     }
 }
