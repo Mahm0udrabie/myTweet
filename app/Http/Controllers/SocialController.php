@@ -16,19 +16,22 @@ class SocialController extends Controller
 
     public function callback($service) {
        $data = Socialite::with($service)->user();
-       dd($data);
+    //    dd($data);
        try{
          $user = User::where('email', $data->email)
-         ->orWhere('email',$data->name."@tweety.com")
+         ->orWhere('social_id', $data->id)
+         ->orWhere('email',$data->name ? $data->name : $data->nickname."@tweety.com")
          ->firstOrFail();
     } catch (ModelNotFoundException $e) {
      
        $user = User::create([
-            "username" => $data->name,
-            "name" => $data->name,
-            "email" => $data->email ? $data->email : $data->name."@tweety.com",
-            'password' => Hash::make($data->name.$data->email),
-            'remember_token' => $data->token
+            "username" => $data->name ? $data->name : $data->nickname,
+            "name" => $data->name ? $data->name : $data->nickname,
+            "avatar" => $data->avatar,
+            "email" => $data->email ? $data->email : ($data->name ? $data->name : $data->nickname."@tweety.com"),
+            'password' => Hash::make($data->name? $data->name.$data->email: $data->nickname.$data->email),
+            'socialToken' => $data->token,
+            // 'remember_token' => $data->token
         ]);
         // dd($create);
     }

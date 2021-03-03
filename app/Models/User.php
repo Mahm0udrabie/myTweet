@@ -24,10 +24,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
+        'social_id',
         'name',
         'avatar',
         'email',
         'password',
+        'socialToken'
     ];
 
     /**
