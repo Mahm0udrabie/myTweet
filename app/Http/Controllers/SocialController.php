@@ -29,7 +29,7 @@ class SocialController extends Controller
             "avatar" => $data->avatar,
             "email" => $data->email ? $data->email : ($data->name ? $data->name : $data->nickname."@tweety.com"),
             'password' => Hash::make($data->name ? $data->name.$data->email: $data->nickname.$data->email),
-            'socialToken' => $data->token ?  $data->token: null,
+            'socialToken' => $data->token ? $data->token: "",
             // 'remember_token' => $data->token
         ]);
         // dd($create);
