@@ -19,7 +19,6 @@ class SocialController extends Controller
     //    dd($data);
        try{
          $user = User::where('email', $data->email)
-         ->orWhere('social_id', $data->id)
          ->orWhere('email',$data->name ? $data->name : $data->nickname."@tweety.com")
          ->firstOrFail();
     } catch (ModelNotFoundException $e) {
