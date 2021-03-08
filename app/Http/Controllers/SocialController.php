@@ -15,12 +15,12 @@ class SocialController extends Controller
     }
 
     public function callback($service) {
-       $data = Socialite::with($service)->user();
+        $data = Socialite::with($service)->user();
     //    dd($data);
        try{
          $user = User::where('email', $data->email)
          ->orWhere('email',$data->name ? $data->name : $data->nickname."@tweety.com")
-         ->firstOrFail();
+         ->firstOrFail();   
     } catch (ModelNotFoundException $e) {
      
        $user = User::create([

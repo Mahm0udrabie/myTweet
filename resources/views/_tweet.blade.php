@@ -27,13 +27,13 @@
                   class="mb-2"
             >
         @auth
-            {{-- <x-like-buttons :tweet="$tweet" /> --}}
+            <x-like-buttons :tweet="$tweet" />
         @endauth
-        <div>
+        {{-- <div>
             @include('publish-tweet-comment', ['tweet'=>$tweet])
             @error('comment')
             <p class="text-red-500 text-sm mt-2"> {{ $message }} </p>
-        @enderror
-        </div>
+            @enderror
+        </div> --}}
     </div>   
 </div>

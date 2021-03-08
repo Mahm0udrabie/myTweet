@@ -41,9 +41,12 @@ class ProfilesController extends Controller
             ],
             "password" => ['required',"string","min:8","max:255", "confirmed"]
         ]);
+        // dd(request('avatar')->store('avatars'));
         if(request('avatar')) {
             $attributes['avatar'] = request('avatar')->store('avatars');
+            $attributes['avatar'] = "storage/".$attributes['avatar'];
         }
+
     $user->update($attributes);
     return redirect($user->path());
     }
