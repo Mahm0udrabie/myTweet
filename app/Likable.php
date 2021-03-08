@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\User;
-use App\Models\like;
+use App\Models\Like;
 
 trait Likable
 {
