@@ -53,8 +53,8 @@ class User extends Authenticatable
     public function getAvatarAttribute($value)
     {
         // return asset($value); 
-        return asset($value ?: '/images/default-avatar.jpeg');
-        // return "https://i.pravatar.cc/200?u=". $this->email;        
+        return asset($value ?: '/images/default-avatar.jpg');
+        return "https://i.pravatar.cc/200?u=". $this->email;        
     }
    
     // public function setPasswordAttribute($value) {
@@ -73,7 +73,7 @@ class User extends Authenticatable
             ->orWhere('user_id', $this->id)
             ->withLikes()
             ->orderByDesc('id')
-            ->paginate(10);
+            ->paginate(5);
     }
     public function tweets() {
         return $this->hasMany(Tweet::class)->latest();

@@ -39,13 +39,13 @@ class ProfilesController extends Controller
                 'max:255',
                 Rule::unique('users')->ignore($user)
             ],
-            "password" => ['required',"string","min:8","max:255", "confirmed"]
+            // "password" => ['required',"string","min:8","max:255", "confirmed"]
         ]);
         // dd(request('avatar')->store('avatars'));
-        if(request('avatar')) {
-            $attributes['avatar'] = request('avatar')->store('avatars');
-            $attributes['avatar'] = "storage/".$attributes['avatar'];
-        }
+        // if(request('avatar')) {
+        //     $attributes['avatar'] = request('avatar')->store('avatars');
+        //     $attributes['avatar'] = "storage/".$attributes['avatar'];
+        // }
 
     $user->update($attributes);
     return redirect($user->path());
