@@ -1906,6 +1906,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['messages']
 });
@@ -1976,23 +1980,6 @@ var app = new Vue({
       });
     }
   }
-});
-var notificationsWrapper = $('.dropdown-notifications');
-var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-var notificationsCountElem = notificationsToggle.find('span[data-count]');
-var notificationsCount = parseInt(notificationsCountElem.data('count'));
-var notifications = notificationsWrapper.find('li.scrollable-container'); // Subscribe to the channel we specified in our Laravel Event
-
-var channel = pusher.subscribe('new-notification'); // Bind a function to a Event (the full Laravel class)
-
-channel.bind('App\\Events\\NewNotification', function (data) {
-  var existingNotifications = notifications.html();
-  var newNotificationHtml = "<div class=\"media-body\">\n        <h6 class=\"media-heading\"> ".concat(data.user_name, "  commented in your tweet</h6>\n        <a href=\"").concat(data.user_id, "\">\n            <p class=\"notification-text bg-muted font-small-3 text-dark\">").concat(data.comment, "</p>\n        </a>\n        <small>\n            <p class=\"media-meta text-muted\">").concat(data.date, " ").concat(data.time, " </p>\n        </small>\n    </div>");
-  notifications.html(newNotificationHtml + existingNotifications);
-  notificationsCount += 1;
-  notificationsCountElem.attr('data-count', notificationsCount);
-  notificationsWrapper.find('.notif-count').text(notificationsCount);
-  notificationsWrapper.show();
 });
 
 /***/ }),
@@ -43659,7 +43646,8 @@ var render = function() {
           expression: "newMessage"
         }
       ],
-      staticClass: "form-control input-sm",
+      staticClass:
+        "appearance-none rounded-md relative block px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm",
       attrs: {
         id: "btn-input",
         type: "text",
@@ -43686,17 +43674,16 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("span", { staticClass: "input-group-btn" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-sm",
-          attrs: { id: "btn-chat" },
-          on: { click: _vm.sendMessage }
-        },
-        [_vm._v("\n            Send\n        ")]
-      )
-    ])
+    _c(
+      "button",
+      {
+        staticClass:
+          "mt-4 group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600",
+        attrs: { id: "btn-chat" },
+        on: { click: _vm.sendMessage }
+      },
+      [_vm._v("\n            Send\n        ")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -43738,10 +43725,28 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                " + _vm._s(message.message) + "\n            "
-            )
+          _c("div", { staticClass: "chat-message m-3" }, [
+            _c("div", { staticClass: "flex items-end" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start"
+                },
+                [
+                  _c("div", [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600"
+                      },
+                      [_vm._v(_vm._s(message.message))]
+                    )
+                  ])
+                ]
+              )
+            ])
           ])
         ])
       ])
