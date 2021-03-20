@@ -3,7 +3,7 @@
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-between">
                 @if(auth()->check())
-                    <div class="lg:w-1/8 p-4 border border-gray-300 rounded-lg mb-4 px-6" style="height:auto">
+                    <div class="lg:w-1/8 rounded-lg p-4">
                         @include('_sidebar-links')
                     </div>
                 @endif

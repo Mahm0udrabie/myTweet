@@ -1,3 +1,5 @@
+<div class="bg-gray-200 border border-gray rounded-lg py-4 px-6">
+
 <ul>
     <li class="flex">
         <i class="fas fa-home mt-1" style="font-size: 20px"></i>
@@ -36,3 +38,5 @@
 </ul>
 
 
+
+</div>
