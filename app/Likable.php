@@ -8,17 +8,20 @@ use App\Models\Like;
 
 trait Likable
 {
-    // public function scopeWithLikes(Builder $query)
-    // {
-    //     $query->leftJoinSub(
-    //         'select tweet_id, sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id',
-    //         'likes',
-    //         'likes.tweet_id',
-    //         'tweets.id'
-    //     );   
-    // }
-        public function scopeWithLikes(Builder $query)
-        {
+    public function scopeWithLikes(Builder $query)
+    {
+        // $query->leftJoinSub(
+        //     'select tweet_id, sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id',
+        //     'likes',
+        //     'likes.tweet_id',
+        //     'tweets.id'
+        // );   
+        #########################################################
+            ###############****************###########
+            ###############* PRODUCTION   *##########
+            ###############*****************##########
+            ###############****************##########
+        ########################################################
           $query->leftJoinSub(
             'select
               tweet_id,
@@ -30,11 +33,11 @@ trait Likable
             'likes.tweet_id',
             'tweets.id'
           );
-        }
+    }
 
     public function isLikedBy(User $user)
     {
-        
+
         return (bool) $user->likes
             ->where('tweet_id', $this->id)
             ->where('liked', true)
